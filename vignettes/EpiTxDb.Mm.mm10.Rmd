@@ -1,0 +1,55 @@
+---
+title: "EpiTxDb.Hs.hg38: Annotation package for EpiTxDb objects"
+author: "Felix G.M. Ernst"
+date: "`r Sys.Date()`"
+package: EpiTxDb.Hs.hg38
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+vignette: >
+  %\VignetteIndexEntry{EpiTxDb.Hs.hg38}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: references.bib
+---
+
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown(css.files = c('custom.css'))
+```
+
+# Available resources
+
+`EpiTxDb.Hs.hg38` contains post-transcriptional RNA modifications from 
+RMBase v2.0 [@Xuan.2017], tRNAdb [@Juehling.2009] and snoRNAdb [@Lestrade.2006].
+
+```{r, echo=FALSE}
+suppressPackageStartupMessages({
+  library(EpiTxDb.Hs.hg38)
+})
+```
+```{r, eval=FALSE}
+library(EpiTxDb.Hs.hg38)
+etd <- EpiTxDb.Hs.hg38.tRNAdb()
+```
+
+Modification information can be accessed through the typical function for an
+`EpiTxDb` object, for example `modifications()`:
+
+```{r}
+modifications(etd)
+```
+
+For a more detailed overview and explanation of the functionality of the 
+`EpiTxDb` class, have a look at the `EpiTxDb` package.
+
+# Sessioninfo
+
+```{r}
+sessionInfo()
+```
+
+<a name="References"></a>
+
+# References

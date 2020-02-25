@@ -1,0 +1,41 @@
+Package: EpiTxDb.Mm.mm10
+Title: Annotation package for EpiTxDb objects
+Description:
+    Exposes an annotation databases generated from several sources by exposing
+    these as EpiTxDb object. Generated for Mus musculus/mm10.
+Version: 0.99.0
+Authors@R: person("Felix G.M.", 
+                  "Ernst", 
+                  email = "felix.gm.ernst@outlook.com", 
+                  role = c("aut", "cre"),
+                  comment = c(ORCID = "0000-0001-5064-0928"))
+License: Artistic-2.0
+Encoding: UTF-8
+NeedsCompilation: no
+LazyData: false
+biocViews:
+    AnnotationHub,
+    AnnotationData,
+    Epitranscriptomics,
+    TxDb,
+    Homo_sapiens
+Depends:
+    R (>= 3.6),
+    EpiTxDb
+Imports:
+    AnnotationDbi
+Suggests:
+    BiocStyle,
+    knitr,
+    rmarkdown,
+    testthat
+Collate:
+    'EpiTxDb.Mm.mm10.R'
+organism:
+    Homo sapiens
+species:
+    Homo sapiens
+VignetteBuilder: knitr
+RoxygenNote: 7.0.2
+BugReports: https://github.com/FelixErnst/EpiTxDb.Mm.mm10/issues
+URL: https://github.com/FelixErnst/EpiTxDb.Mm.mm10
