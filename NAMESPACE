@@ -3,4 +3,5 @@
 export(EpiTxDb.Mm.mm10.RMBase)
 export(EpiTxDb.Mm.mm10.snoRNAdb)
 export(EpiTxDb.Mm.mm10.tRNAdb)
+import(AnnotationHub)
 import(EpiTxDb)
