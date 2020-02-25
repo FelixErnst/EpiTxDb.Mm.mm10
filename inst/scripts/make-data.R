@@ -1,7 +1,6 @@
 # get annotation data
 library(AnnotationHub)
 library(BSgenome.Mmusculus.UCSC.mm10)
-library(org.Mm.eg.db)
 library(EpiTxDb)
 library(RSQLite)
 library(GenomicRanges)
@@ -80,8 +79,10 @@ tx <- assemble_tx(edb, "mm10", seqlevels)
 ################################################################################
 
 import.RMBase <- function(bs, organism, genome, type){
-  metadata <- data.frame(name = c("Genome","Coordinates"),
-                         value = c("mm10","per Genome"))
+  metadata <- data.frame(name = c("Data source","Organism","Genome",
+                                  "Coordinates"),
+                         value = c("RMBase v2.0","Mus musculus","mm10",
+                                   "per Genome"))
   #
   files <- downloadRMBaseFiles(organism, genome, type)
   gr <- getRMBaseDataAsGRanges(files)
@@ -107,8 +108,10 @@ import.RMBase <- function(bs, organism, genome, type){
 }
 
 import_from_tRNAdb <- function(organism, bs, tx){
-  metadata <- data.frame(name = c("Genome","Coordinates"),
-                         value = c("mm10","per Transcript"))
+  metadata <- data.frame(name = c("Data source","Organism","Genome",
+                                  "Coordinates"),
+                         value = c("tRNAdb","Mus musculus","mm10",
+                                   "per Transcript"))
   #
   seq <- getSeq(bs,tx)
   seq <- relist(unlist(unlist(seq)),
