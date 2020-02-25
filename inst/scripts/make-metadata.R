@@ -27,7 +27,7 @@ df <- rbind(
         DataFrame(Title = "EpiTxDb tRNAdb for Mus musculus mm10", 
                   Description = paste0(
                     ""),
-                  SourceType = "TXT",
+                  SourceType = "XML",
                   SourceUrl = tRNAdbURL,
                   DataProvider = "tRNAdb",
                   RDataClass = "SQLiteFile", 
