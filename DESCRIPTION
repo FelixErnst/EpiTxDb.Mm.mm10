@@ -17,18 +17,17 @@ biocViews:
     AnnotationHub,
     AnnotationData,
     Epitranscriptomics,
-    TxDb,
-    Homo_sapiens
+    Mus_musculus
 Depends:
     R (>= 3.6),
+    AnnotationHub,
     EpiTxDb
-Imports:
-    AnnotationDbi
 Suggests:
     BiocStyle,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    BSgenome.Scerevisiae.UCSC.sacCer3
 Collate:
     'EpiTxDb.Mm.mm10.R'
 organism:
