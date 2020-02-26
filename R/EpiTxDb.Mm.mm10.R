@@ -17,9 +17,7 @@
 #' @seealso
 #' \itemize{
 #' \item{\code{\link[EpiTxDb:modifications]{modifications}}}
-#' \item{\code{\link[EpiTxDb:modifications]{reactions}}}
-#' \item{\code{\link[EpiTxDb:modifications]{specifies}}}
-#' \item{\code{\link[EpiTxDb:modifications]{modificationsByTranscript}}}
+#' \item{\code{\link[EpiTxDb:modifications]{modificationsBy}}}
 #' \item{\code{\link[EpiTxDb:modifications]{modifiedSeqsByTranscript}}}
 #' }
 #' 
@@ -64,12 +62,6 @@ EpiTxDb.Mm.mm10.RMBase <- function(version = "1"){
 
 #' @rdname EpiTxDb.Mm.mm10
 #' @export
-EpiTxDb.Mm.mm10.snoRNAdb <- function(version = "1"){
-    .load_resource(version = version, type = "snoRNAdb")
-}
-
-#' @rdname EpiTxDb.Mm.mm10
-#' @export
 EpiTxDb.Mm.mm10.tRNAdb <- function(version = "1"){
     .load_resource(version = version, type = "tRNAdb")
 }
@@ -78,11 +70,9 @@ EpiTxDb.Mm.mm10.tRNAdb <- function(version = "1"){
 
 AH_DATA <- data.frame(version = "1",
                       RMBase = "AH00000",
-                      snoRNAdb = "AH00000",
                       tRNAdb = "AH00000")
 
 # AH_DATA <- rbind(AH_DATA,
 #                  data.frame(version = "1.0",
 #                             RMBase = "AH00000",
-#                             snoRNAdb = "AH00000",
 #                             tRNAdb = "AH00000"))

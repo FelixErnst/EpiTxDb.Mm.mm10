@@ -4,13 +4,10 @@
 \name{EpiTxDb.Mm.mm10}
 \alias{EpiTxDb.Mm.mm10}
 \alias{EpiTxDb.Mm.mm10.RMBase}
-\alias{EpiTxDb.Mm.mm10.snoRNAdb}
 \alias{EpiTxDb.Mm.mm10.tRNAdb}
 \title{Annotation package for \code{EpiTxDb} objects}
 \usage{
 EpiTxDb.Mm.mm10.RMBase(version = "1")
-
-EpiTxDb.Mm.mm10.snoRNAdb(version = "1")
 
 EpiTxDb.Mm.mm10.tRNAdb(version = "1")
 }
@@ -33,9 +30,7 @@ EpiTxDb.Mm.mm10.tRNAdb()
 \seealso{
 \itemize{
 \item{\code{\link[EpiTxDb:modifications]{modifications}}}
-\item{\code{\link[EpiTxDb:modifications]{reactions}}}
-\item{\code{\link[EpiTxDb:modifications]{specifies}}}
-\item{\code{\link[EpiTxDb:modifications]{modificationsByTranscript}}}
+\item{\code{\link[EpiTxDb:modifications]{modificationsBy}}}
 \item{\code{\link[EpiTxDb:modifications]{modifiedSeqsByTranscript}}}
 }
 }

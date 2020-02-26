@@ -1,15 +1,15 @@
 ---
-title: "EpiTxDb.Hs.hg38: Annotation package for EpiTxDb objects"
+title: "EpiTxDb.Mm.mm10: Annotation package for EpiTxDb objects"
 author: "Felix G.M. Ernst"
 date: "`r Sys.Date()`"
-package: EpiTxDb.Hs.hg38
+package: EpiTxDb.Mm.mm10
 output:
   BiocStyle::html_document:
     toc: true
     toc_float: true
     df_print: paged
 vignette: >
-  %\VignetteIndexEntry{EpiTxDb.Hs.hg38}
+  %\VignetteIndexEntry{EpiTxDb.Mm.mm10}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: references.bib
@@ -21,24 +21,26 @@ BiocStyle::markdown(css.files = c('custom.css'))
 
 # Available resources
 
-`EpiTxDb.Hs.hg38` contains post-transcriptional RNA modifications from 
-RMBase v2.0 [@Xuan.2017], tRNAdb [@Juehling.2009] and snoRNAdb [@Lestrade.2006].
+`EpiTxDb.Mm.mm10` contains post-transcriptional RNA modifications from 
+RMBase v2.0 [[@Xuan.2017]](#References) and tRNAdb [[@Juehling.2009]](#References) and
+can be accessed through the functions `EpiTxDb.Mm.mm10.tRNAdb()` and
+`EpiTxDb.Mm.mm10.RMBase()`
 
 ```{r, echo=FALSE}
 suppressPackageStartupMessages({
-  library(EpiTxDb.Hs.hg38)
+  library(EpiTxDb.Mm.mm10)
 })
 ```
 ```{r, eval=FALSE}
-library(EpiTxDb.Hs.hg38)
-etd <- EpiTxDb.Hs.hg38.tRNAdb()
+library(EpiTxDb.Mm.mm10)
+etdb <- EpiTxDb.Mm.mm10.tRNAdb()
 ```
 
 Modification information can be accessed through the typical function for an
 `EpiTxDb` object, for example `modifications()`:
 
 ```{r}
-modifications(etd)
+modifications(etdb)
 ```
 
 For a more detailed overview and explanation of the functionality of the 
