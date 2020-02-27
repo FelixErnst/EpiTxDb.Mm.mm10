@@ -19,7 +19,7 @@ biocViews:
     Epitranscriptomics,
     Mus_musculus
 Depends:
-    R (>= 3.6),
+    R (>= 4.0),
     AnnotationHub,
     EpiTxDb
 Suggests:
