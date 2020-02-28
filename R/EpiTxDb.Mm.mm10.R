@@ -12,6 +12,9 @@
 #' \code{EpiTxDb} object of Mus musculus data from tRNAdb build based on the
 #' mm10 genome.
 #'
+#' @param version a \code{character} value defining a version. Versions
+#'   available: \code{"1"}.(default: \code{version = "1"})
+#'   
 #' @return a \code{\link[EpiTxDb:EpiTxDb-class]{EpiTxDb}} object 
 #' 
 #' @seealso
@@ -47,7 +50,7 @@ NULL
     .check_version(version)
     ah <- AnnotationHub()
     id <- AH_DATA[AH_DATA$version == version,type]
-    if(!is.na(id)){
+    if(is.na(id)){
         stop("Not data for '",type,"' and version '",version,"' available.")
     }
     resource <- ah[[id]]
@@ -70,7 +73,8 @@ EpiTxDb.Mm.mm10.tRNAdb <- function(version = "1"){
 
 AH_DATA <- data.frame(version = "1",
                       RMBase = "AH78917",
-                      tRNAdb = "AH78918")
+                      tRNAdb = "AH78918",
+                      stringsAsFactors = FALSE)
 
 # AH_DATA <- rbind(AH_DATA,
 #                  data.frame(version = "1.0",

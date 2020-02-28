@@ -11,6 +11,10 @@ EpiTxDb.Mm.mm10.RMBase(version = "1")
 
 EpiTxDb.Mm.mm10.tRNAdb(version = "1")
 }
+\arguments{
+\item{version}{a \code{character} value defining a version. Versions
+available: \code{"1"}.(default: \code{version = "1"})}
+}
 \value{
 a \code{\link[EpiTxDb:EpiTxDb-class]{EpiTxDb}} object
 }

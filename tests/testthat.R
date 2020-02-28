@@ -1,4 +1,4 @@
 library(testthat)
-library(EpiTxDb.Sc.sacCer3)
+library(EpiTxDb.Mm.mm10)
 
-test_check("EpiTxDb.Sc.sacCer3")
+test_check("EpiTxDb.Mm.mm10")

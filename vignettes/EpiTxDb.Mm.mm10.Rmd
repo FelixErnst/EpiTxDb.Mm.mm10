@@ -33,8 +33,12 @@ suppressPackageStartupMessages({
 ```
 ```{r, eval=FALSE}
 library(EpiTxDb.Mm.mm10)
-etdb <- EpiTxDb.Mm.mm10.tRNAdb()
 ```
+```{r}
+etdb <- EpiTxDb.Mm.mm10.tRNAdb()
+etdb
+```
+
 
 Modification information can be accessed through the typical function for an
 `EpiTxDb` object, for example `modifications()`:
