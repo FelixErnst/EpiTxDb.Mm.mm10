@@ -16,7 +16,10 @@ df <- rbind(
   cbind(df_Base,
         DataFrame(Title = "EpiTxDb RMBase v2.0 for Mus musculus mm10", 
                   Description = paste0(
-                    ""), 
+                    "Information from the RMBase v2.0 was downloaded and ",
+                    "imported as EpiTxDb database. All valid modification ",
+                    "types for Mus musculus/mm10 were used and checked the ",
+                    "nucleotide sequence."), 
                   SourceType = "BED",
                   SourceUrl = RMBaseURL,
                   DataProvider = "RMBase v2.0",
@@ -26,7 +29,10 @@ df <- rbind(
   cbind(df_Base,
         DataFrame(Title = "EpiTxDb tRNAdb for Mus musculus mm10", 
                   Description = paste0(
-                    ""),
+                    "tRNAdb entries for RNA database were imported using ",
+                    "tRNAdbImport and the modification information extracted. ",
+                    "tRNA sequences were matched against transcripts, ",
+                    "results combined and stored as EpiTxDb database."),
                   SourceType = "XML",
                   SourceUrl = tRNAdbURL,
                   DataProvider = "tRNAdb",
