@@ -3,7 +3,7 @@ Title: Annotation package for EpiTxDb objects
 Description:
     Exposes an annotation databases generated from several sources by exposing
     these as EpiTxDb object. Generated for Mus musculus/mm10.
-Version: 0.99.3
+Version: 0.99.4
 Authors@R: person("Felix G.M.", 
                   "Ernst", 
                   email = "felix.gm.ernst@outlook.com", 
