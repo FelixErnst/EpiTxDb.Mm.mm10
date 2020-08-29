@@ -19,7 +19,6 @@ biocViews:
 Depends:
     R (>= 4.0),
     AnnotationHub,
-    Biostrings,
     EpiTxDb
 Suggests:
     BiocStyle,
