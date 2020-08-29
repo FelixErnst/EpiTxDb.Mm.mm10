@@ -138,8 +138,109 @@ import_from_tRNAdb <- function(organism, bs, tx){
   makeEpiTxDbFromGRanges(gr, metadata = metadata)
 }
 
+import_from_snoRNAdb <- function(snoRNAdb, orgdb){
+  metadata <- data.frame(name = c("Data source","Organism","Genome",
+                                  "Coordinates"),
+                         value = c("snoRNAdb","Mus musculus","mm10",
+                                   "per Transcript"))
+  # clean up
+  snoRNAdb <- snoRNAdb[!is.na(snoRNAdb$start),]
+  # Modifications
+  mod_id <- seq_len(nrow(snoRNAdb))
+  mod_name <- paste0(snoRNAdb$modification,"_",snoRNAdb$position)
+  mod_type <- snoRNAdb$modification
+  mod_start <- snoRNAdb$position
+  mod_end <- snoRNAdb$position
+  
+  transcripts <- select(orgdb,as.character(snoRNAdb$key),
+                        c("REFSEQ","SYMBOL","ENTREZID"),"SYMBOL")
+  
+  modifications <- data.frame(mod_id = mod_id,
+                              mod_name = mod_name,
+                              mod_type = mod_type,
+                              mod_start = mod_start,
+                              mod_end = mod_end,
+                              mod_strand = "+",
+                              sn_id = as.integer(transcripts$ENTREZID),
+                              sn_name = transcripts$REFSEQ,
+                              stringsAsFactors = FALSE)
+  
+  # Reactions
+  gene_fbl <- select(orgdb,keys = "Fbl",
+                     columns = c("GENENAME","ENSEMBL","ENTREZID"),
+                     keytype = "SYMBOL")
+  
+  gene_dkc <- select(orgdb,keys = "Dkc1",
+                     columns = c("GENENAME","ENSEMBL","ENTREZID"),
+                     keytype = "SYMBOL")
+  
+  rx_rank <- 1L
+  mod_type <- snoRNAdb$modification
+  genename <- character(length(mod_type))
+  ensembl <- character(length(mod_type))
+  ensembltrans <- character(length(mod_type))
+  entrezid <- character(length(mod_type))
+  
+  genename[mod_type == "Y"] <- gene_dkc$GENENAME
+  genename[mod_type != "Y"] <- gene_fbl$GENENAME
+  
+  ensembl[mod_type == "Y"] <- gene_dkc$ENSEMBL
+  ensembl[mod_type != "Y"] <- gene_fbl$ENSEMBL
+  
+  entrezid[mod_type == "Y"] <- gene_dkc$ENTREZID
+  entrezid[mod_type != "Y"] <- gene_fbl$ENTREZID
+  
+  reactions <- data.frame(mod_id = mod_id,
+                          rx_genename = genename,
+                          rx_rank = rx_rank,
+                          rx_ensembl = ensembl,
+                          rx_ensembltrans = ensembltrans,
+                          rx_entrezid = entrezid,
+                          stringsAsFactors = FALSE)
+  
+  # Specifiers
+  specifier_genename <- snoRNAdb$guide
+  specifier_f <- specifier_genename != "unknown"
+  specifier_genename <- strsplit(as.character(specifier_genename),",")[specifier_f]
+  specifier_lengths <- lengths(specifier_genename)
+  specifier_type <- "snoRNA"
+  specifier_mod_id <- unlist(Map(rep,mod_id[specifier_f],specifier_lengths))
+  # specifier_entrezid <- mapIds(orgdb,unlist(specifier_genename),"ENTREZID",
+  #                              "SYMBOL")
+  # specifier_ensembl <- mapIds(orgdb,unlist(specifier_genename),"ENSEMBL",
+  #                             "SYMBOL")
+  
+  specifiers <- data.frame(mod_id = specifier_mod_id,
+                           spec_type = specifier_type,
+                           spec_genename = unlist(specifier_genename),
+                           # spec_ensembl = specifier_ensembl,
+                           # spec_entrezid = specifier_entrezid,
+                           stringsAsFactors = FALSE)
+  # References
+  references_id <- strsplit(as.character(snoRNAdb$Ref),"\\.")
+  references_f <- lengths(references_id) > 0L
+  refDb <- data.frame(ID = c("1","2"),
+                      PMID = c("16381836","31566069"))
+  references_pmid <- lapply(references_id,
+                            function(x){refDb[refDb$ID %in% x,"PMID"]})
+  references_lengths <- lengths(references_pmid)
+  references_mod_id <- unlist(Map(rep,mod_id[references_f],references_lengths))
+  references <- data.frame(mod_id = references_mod_id,
+                           ref_type = "PMID",
+                           ref = unlist(references_pmid))
+  makeEpiTxDb(modifications, reactions, specifiers, references,
+              metadata = metadata)
+}
+
 # start the import RMBase, snoRNAdb and tRNAdb data
-start.import <- function(bs, tx){
+start.import <- function(bs, orgdb, tx){
+  snoRNAdb <- read.csv2(system.file("extdata","snoRNAdb.mm10.csv"))
+  etdb <- import_from_snoRNAdb(snoRNAdb, orgdb)
+  db <- dbConnect(SQLite(), "hub/EpiTxDb.Mm.mm10.snoRNAdb.sqlite")
+  sqliteCopyDatabase(etdb$conn, db)
+  dbDisconnect(etdb$conn)
+  dbDisconnect(db)
+  
   etdb <- import_from_tRNAdb("Mus musculus", bs, tx)
   db <- dbConnect(SQLite(), "hub/EpiTxDb.Mm.mm10.tRNAdb.sqlite")
   sqliteCopyDatabase(etdb$conn, db)
@@ -155,4 +256,4 @@ start.import <- function(bs, tx){
   return(TRUE)
 }
 
-start.import(BSgenome.Mmusculus.UCSC.mm10, tx)
+start.import(BSgenome.Mmusculus.UCSC.mm10, org.Mm.eg.db, tx)

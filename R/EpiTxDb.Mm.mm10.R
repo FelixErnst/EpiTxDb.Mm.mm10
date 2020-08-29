@@ -65,15 +65,29 @@ EpiTxDb.Mm.mm10.RMBase <- function(version = "1"){
 
 #' @rdname EpiTxDb.Mm.mm10
 #' @export
+EpiTxDb.Mm.mm10.snoRNAdb <- function(version = "1"){
+    .load_resource(version = version, type = "snoRNAdb")
+}
+
+#' @rdname EpiTxDb.Mm.mm10
+#' @export
 EpiTxDb.Mm.mm10.tRNAdb <- function(version = "1"){
     .load_resource(version = version, type = "tRNAdb")
+}
+
+#' @rdname EpiTxDb.Mm.mm10
+#' @export
+snoRNA.targets.mm10 <- function(version = "1"){
+    .load_resource(version = version, type = "snoRNA_seq_mm10")
 }
 
 # version information ----------------------------------------------------------
 
 AH_DATA <- data.frame(version = "1",
                       RMBase = "AH78917",
+                      snoRNAdb = "",
                       tRNAdb = "AH78918",
+                      snoRNA_seq_mm10 = "",
                       stringsAsFactors = FALSE)
 
 # AH_DATA <- rbind(AH_DATA,

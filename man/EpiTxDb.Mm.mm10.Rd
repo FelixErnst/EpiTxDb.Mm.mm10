@@ -4,12 +4,18 @@
 \name{EpiTxDb.Mm.mm10}
 \alias{EpiTxDb.Mm.mm10}
 \alias{EpiTxDb.Mm.mm10.RMBase}
+\alias{EpiTxDb.Mm.mm10.snoRNAdb}
 \alias{EpiTxDb.Mm.mm10.tRNAdb}
+\alias{snoRNA.targets.mm10}
 \title{Annotation package for \code{EpiTxDb} objects}
 \usage{
 EpiTxDb.Mm.mm10.RMBase(version = "1")
 
+EpiTxDb.Mm.mm10.snoRNAdb(version = "1")
+
 EpiTxDb.Mm.mm10.tRNAdb(version = "1")
+
+snoRNA.targets.mm10(version = "1")
 }
 \arguments{
 \item{version}{a \code{character} value defining a version. Versions
