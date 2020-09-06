@@ -85,9 +85,9 @@ snoRNA.targets.mm10 <- function(version = "1"){
 
 AH_DATA <- data.frame(version = "1",
                       RMBase = "AH78917",
-                      snoRNAdb = "",
+                      snoRNAdb = "AH83363",
                       tRNAdb = "AH78918",
-                      snoRNA_seq_mm10 = "",
+                      snoRNA_seq_mm10 = "AH83364",
                       stringsAsFactors = FALSE)
 
 # AH_DATA <- rbind(AH_DATA,
